@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "502214398926",
+    "firebase_url": "https://sigma-vpn-4fabd-default-rtdb.firebaseio.com",
+    "project_id": "sigma-vpn-4fabd",
+    "storage_bucket": "sigma-vpn-4fabd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502214398926:android:5f53b87a1f260ba77b519f",
+        "android_client_info": {
+          "package_name": "com.helloboss.sigmavpn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502214398926-r9iagtrgemunissg34ie6mingp530gam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK1GubFxu2KczWoFSCy4oZ8dqLr6S8A2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502214398926-r9iagtrgemunissg34ie6mingp530gam.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
