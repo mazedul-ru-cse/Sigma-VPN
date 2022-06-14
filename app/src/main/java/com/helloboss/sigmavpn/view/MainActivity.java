@@ -111,154 +111,154 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
         ArrayList<Server> servers = new ArrayList<>();
 
         servers.add(new Server("Bangladesh",
-                Utils.getImgURL(R.drawable.bangladesh),
+                "Bangladesh",
                 "Bangladesh",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("India",
-                Utils.getImgURL(R.drawable.india),
+                "India",
                 "India",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Argentina",
-                Utils.getImgURL(R.drawable.argentina),
+                "Argentina",
                 "Argentina",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Brazil",
-                Utils.getImgURL(R.drawable.brazil),
+                "Brazil",
                 "Brazil",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Denmark",
-                Utils.getImgURL(R.drawable.denmark),
+                "Denmark",
                 "Denmark",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Hongkong",
-                Utils.getImgURL(R.drawable.hongkong),
+                "Hongkong",
                 "Hongkong",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Malaysia",
-                Utils.getImgURL(R.drawable.malaysia),
+                "Malaysia",
                 "Malaysia",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Nepal",
-                Utils.getImgURL(R.drawable.nepal),
+                "Nepal",
                 "Nepal",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("New zealand",
-                Utils.getImgURL(R.drawable.newzealand),
+                "New zealand",
                 "New zealand",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("North Korea",
-                Utils.getImgURL(R.drawable.northkorea),
+                "North Korea",
                 "North Korea",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Pakistan",
-                Utils.getImgURL(R.drawable.pakistan),
+                "Pakistan",
                 "Pakistan",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Portugal",
-                Utils.getImgURL(R.drawable.portugal),
+                "Portugal",
                 "Portugal",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("South Korea",
-                Utils.getImgURL(R.drawable.southkorea),
+                "South Korea",
                 "South Korea",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Spain",
-                Utils.getImgURL(R.drawable.spain),
+                "Spain",
                 "Spain",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Sri lanka",
-                Utils.getImgURL(R.drawable.srilanka),
+                "Sri lanka",
                 "Sri lanka",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Sudan",
-                Utils.getImgURL(R.drawable.sudan),
+                "Sudan",
                 "Sudan",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Syria",
-                Utils.getImgURL(R.drawable.syria),
+                "Syria",
                 "Syria",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Thailand",
-                Utils.getImgURL(R.drawable.thailand),
+                "Thailand",
                 "Thailand",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Turkey",
-                Utils.getImgURL(R.drawable.turkey),
+                "Turkey",
                 "Turkey",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Ukraine",
-                Utils.getImgURL(R.drawable.ukraine),
+                "Ukraine",
                 "Ukraine",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("US",
-                Utils.getImgURL(R.drawable.usa),
+                "US",
                 "USA",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Vietnam",
-                Utils.getImgURL(R.drawable.vietnam),
+                "Vietnam",
                 "Vietnam",
                 "vpn",
                 "vpn"
@@ -266,14 +266,14 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
 
 
         servers.add(new Server("West Indies",
-                Utils.getImgURL(R.drawable.westindies),
+                "West Indies",
                 "West Indies",
                 "vpn",
                 "vpn"
         ));
 
         servers.add(new Server("Yemen",
-                Utils.getImgURL(R.drawable.yemen),
+                "Yemen",
                 "Yemen",
                 "vpn",
                 "vpn"

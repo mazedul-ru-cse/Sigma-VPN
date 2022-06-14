@@ -400,9 +400,85 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
      * @param serverIcon: icon URL
      */
     public void updateCurrentServerIcon(String serverIcon) {
-        Glide.with(getContext())
-                .load(serverIcon)
-                .into(binding.selectedServerIcon);
+//        Glide.with(getContext())
+//                .load(serverIcon)
+//                .into(binding.selectedServerIcon);
+        binding.selectedServerIcon.setBackgroundResource(getFlagId(serverIcon));
+    }
+
+    private int getFlagId(String flag) {
+
+        switch (flag){
+
+            case "Bangladesh":
+                return R.drawable.bangladesh;
+
+            case "Argentina":
+                return R.drawable.argentina;
+
+            case "Brazil":
+                return R.drawable.brazil;
+
+            case "Denmark":
+                return R.drawable.denmark;
+
+            case "India":
+                return R.drawable.india;
+
+            case "Malaysia":
+                return R.drawable.malaysia;
+
+            case "Nepal":
+                return R.drawable.nepal;
+
+            case "New zealand":
+                return R.drawable.newzealand;
+
+            case "North Korea":
+                return R.drawable.northkorea;
+
+            case "Pakistan":
+                return R.drawable.pakistan;
+
+            case "Portugal":
+                return R.drawable.portugal;
+
+            case "Sri lanka":
+                return R.drawable.srilanka;
+
+            case "Sudan":
+                return R.drawable.sudan;
+
+            case "Syria":
+                return R.drawable.syria;
+
+            case "Thailand":
+                return R.drawable.thailand;
+
+            case "Turkey":
+                return R.drawable.turkey;
+
+            case "Ukraine":
+                return R.drawable.ukraine;
+
+            case "US":
+                return R.drawable.usa;
+
+            case "Vietnam":
+                return R.drawable.vietnam;
+
+            case "Spain":
+                return R.drawable.spain;
+
+            case "West Indies":
+                return R.drawable.westindies;
+
+            case "Yemen":
+                return R.drawable.yemen;
+
+        }
+
+        return R.drawable.bangladesh;
     }
 
     /**

@@ -88,13 +88,14 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="16sp" />
         </LinearLayout>
+
         <ImageView
-            android:layout_marginBottom="20dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
+            android:id="@+id/selectedServerIcon"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:id="@+id/selectedServerIcon"
-            android:src="@drawable/bangladesh"/>
+            android:background="@drawable/bangladesh"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp" />
     </RelativeLayout>
 </layout>
