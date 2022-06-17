@@ -17,9 +17,10 @@
     <ImageButton
         android:layout_gravity="right"
         android:id="@+id/navbar_right"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_outline_language_24"
         android:layout_marginRight="10dp"
-        android:background="@drawable/bangladesh" />
+        />
 
 </androidx.appcompat.widget.Toolbar>

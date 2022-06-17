@@ -74,6 +74,12 @@ public class ServerListRVAdapter extends RecyclerView.Adapter<ServerListRVAdapte
             case "India":
                 return R.drawable.india;
 
+            case "Hongkong":
+                return R.drawable.hongkong;
+
+            case "South Korea":
+                return R.drawable.southkorea;
+
             case "Malaysia":
                 return R.drawable.malaysia;
 

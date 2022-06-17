@@ -12,7 +12,7 @@
         android:textColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="choose your location"
+        android:text="Select your server"
         android:textAllCaps="true"/>
 
     <TextView

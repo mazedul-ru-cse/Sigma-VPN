@@ -16,6 +16,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.helloboss.sigmavpn.R;
 import com.helloboss.sigmavpn.adapter.ServerListRVAdapter;
 import com.helloboss.sigmavpn.interfaces.ChangeServer;
@@ -36,7 +41,9 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
     private DrawerLayout drawer;
     private ChangeServer changeServer;
 
-    public static final String TAG = "CakeVPN";
+    public static final String TAG = "SigmaVpn";
+    private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +80,26 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
             serverListRv.setAdapter(serverListRVAdapter);
         }
 
+        //Show banner ads
+//        showBannerAds();
+
+
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {
+//            }
+//        });
+
     }
+
+    // Banner Ads
+    private void showBannerAds() {
+
+//        mAdView = findViewById(R.id.banner_ads_view);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+    }
+
 
     /**
      * Initialize all object, listener etc

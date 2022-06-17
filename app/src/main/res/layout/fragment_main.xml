@@ -4,98 +4,124 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
         android:paddingBottom="5dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/connectionStatus">
-
-            <TextView
-                android:id="@+id/logTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:textColor="@color/colorWhite" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginLeft="20dp"
             android:id="@+id/connectionStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="vertical"
-            android:layout_marginStart="20dp">
+            android:layout_marginTop="140dp"
+
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/vpnBtn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/vpn_btn_back_off"
+                android:src="@drawable/ic_baseline_power_settings_new_24" />
 
             <TextView
+                android:id="@+id/connectionIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Connection Status"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Disconnected"
                 android:textColor="@color/colorWhite"
-                android:textSize="15sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/durationTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
                 android:text="Duration: 00:00:00"
                 android:textColor="@color/colorWhite"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/lastPacketReceiveTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Packet Received:"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:textColor="@color/colorWhite"
-                android:textSize="14sp" />
+
+                android:visibility="gone"
+
+                />
 
             <TextView
                 android:id="@+id/byteInTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Bytes In: "
-                android:textColor="@color/colorWhite"
-                android:textSize="14sp" />
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/byteOutTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Bytes OUT: "
-                android:textColor="@color/colorWhite"
-                android:textSize="14sp" />
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone" />
 
-            <Button
-                android:layout_marginRight="30dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:tag="1"
-                android:id="@+id/vpnBtn"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:background="@drawable/button"
-                android:text="Connect"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/logTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:textColor="@color/colorWhite" />
+
         </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_above="@+id/connectionStatus">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/logTv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:gravity="center"-->
+<!--                android:textColor="@color/colorWhite" />-->
+<!--        </LinearLayout>-->
+
+
+
 
         <ImageView
             android:id="@+id/selectedServerIcon"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:background="@drawable/bangladesh"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="150dp"
+            android:background="@drawable/bangladesh" />
+
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            android:id="@+id/banner_ads_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginStart="0dp"-->
+<!--            android:layout_marginEnd="0dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            ads:adSize="BANNER"-->
+<!--            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>-->
     </RelativeLayout>
+
 </layout>

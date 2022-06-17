@@ -114,6 +114,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
             case R.id.vpnBtn:
                 // Vpn is running, user would like to disconnect current connection.
                 if (vpnStart) {
+
                     confirmDisconnect();
                 }else {
                     prepareVpn();
@@ -180,6 +181,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
      */
     public boolean stopVpn() {
         try {
+
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+            binding.connectionIndicator.setText("Disconnected");
+            
             vpnThread.stop();
 
             status("connect");
@@ -318,26 +323,31 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
     public void status(String status) {
 
         if (status.equals("connect")) {
-            binding.vpnBtn.setText(getContext().getString(R.string.connect));
+            //binding.vpnBtn.setText(getContext().getString(R.string.connect));
         } else if (status.equals("connecting")) {
-            binding.vpnBtn.setText(getContext().getString(R.string.connecting));
+            //binding.vpnBtn.setText(getContext().getString(R.string.connecting));
         } else if (status.equals("connected")) {
 
-            binding.vpnBtn.setText(getContext().getString(R.string.disconnect));
+            binding.connectionIndicator.setText("Connected");
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
+
 
         } else if (status.equals("tryDifferentServer")) {
 
-            binding.vpnBtn.setBackgroundResource(R.drawable.button_connected);
-            binding.vpnBtn.setText("Try Different\nServer");
-        } else if (status.equals("loading")) {
-            binding.vpnBtn.setBackgroundResource(R.drawable.button);
-            binding.vpnBtn.setText("Loading Server..");
-        } else if (status.equals("invalidDevice")) {
-            binding.vpnBtn.setBackgroundResource(R.drawable.button_connected);
-            binding.vpnBtn.setText("Invalid Device");
-        } else if (status.equals("authenticationCheck")) {
-            binding.vpnBtn.setBackgroundResource(R.drawable.button_connecting);
-            binding.vpnBtn.setText("Authentication \n Checking...");
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+            binding.connectionIndicator.setText("Try again");
+        }
+        else if (status.equals("loading")) {
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+            binding.connectionIndicator.setText("Disconnected");
+        }
+        else if (status.equals("invalidDevice")) {
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+            binding.connectionIndicator.setText("Disconnected");
+        }
+        else if (status.equals("authenticationCheck")) {
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+            binding.connectionIndicator.setText("Disconnected");
         }
 
     }
@@ -419,6 +429,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
             case "Brazil":
                 return R.drawable.brazil;
 
+            case "Hongkong":
+                return R.drawable.hongkong;
+
+            case "South Korea":
+                return R.drawable.southkorea;
+
             case "Denmark":
                 return R.drawable.denmark;
 
@@ -490,6 +506,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
         this.server = server;
         updateCurrentServerIcon(server.getFlagUrl());
 
+        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+        binding.connectionIndicator.setText("Disconnected");
+
         // Stop previous connection
         if (vpnStart) {
             stopVpn();
@@ -510,6 +529,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
 
     @Override
     public void onPause() {
+
+        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+        binding.connectionIndicator.setText("Disconnected");
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
         super.onPause();
     }
@@ -519,6 +541,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
      */
     @Override
     public void onStop() {
+
+        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+        binding.connectionIndicator.setText("Disconnected");
+
         if (server != null) {
             preference.saveServer(server);
         }
