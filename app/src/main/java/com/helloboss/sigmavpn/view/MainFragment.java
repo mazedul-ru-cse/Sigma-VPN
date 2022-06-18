@@ -23,16 +23,18 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+
 import com.helloboss.sigmavpn.CheckInternetConnection;
 import com.helloboss.sigmavpn.R;
 import com.helloboss.sigmavpn.SharedPreference;
@@ -40,15 +42,6 @@ import com.helloboss.sigmavpn.databinding.FragmentMainBinding;
 import com.helloboss.sigmavpn.interfaces.ChangeServer;
 import com.helloboss.sigmavpn.model.Server;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 import de.blinkt.openvpn.OpenVpnApi;
 import de.blinkt.openvpn.core.OpenVPNService;
@@ -78,7 +71,29 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
         View view = binding.getRoot();
         initializeAll();
 
+
+        //Show banner ads
+        showBannerAds();
+
+
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
         return view;
+    }
+
+    // Banner Ads
+    private void showBannerAds() {
+
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+        binding.bannerAdsView1.loadAd(adRequest1);
+
+        AdRequest adRequest2 = new AdRequest.Builder().build();
+        binding.bannerAdsView2.loadAd(adRequest2);
     }
 
     /**

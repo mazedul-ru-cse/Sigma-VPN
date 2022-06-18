@@ -1,6 +1,5 @@
 package com.helloboss.sigmavpn.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,12 +14,11 @@ import android.os.Bundle;
 
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import com.helloboss.sigmavpn.R;
 import com.helloboss.sigmavpn.adapter.ServerListRVAdapter;
 import com.helloboss.sigmavpn.interfaces.ChangeServer;
@@ -42,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
     private ChangeServer changeServer;
 
     public static final String TAG = "SigmaVpn";
-    private AdView mAdView;
+    ImageButton menuLeft, menuRight;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,10 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
         // Initialize all variable
         initializeAll();
 
-        ImageButton menuRight = findViewById(R.id.navbar_right);
+        menuRight = findViewById(R.id.navbar_right);
+        menuLeft = findViewById(R.id.navbar_left);
+        
+        
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,9 +69,19 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
         menuRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                closeDrawer();
+                rightSide();
             }
         });
+
+
+        menuLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                leftSide();
+                //Toast.makeText(MainActivity.this, "This is working", Toast.LENGTH_LONG).show();
+            }
+        });
+      
 
         transaction.add(R.id.container, fragment);
         transaction.commit();
@@ -80,25 +92,8 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
             serverListRv.setAdapter(serverListRVAdapter);
         }
 
-        //Show banner ads
-//        showBannerAds();
-
-
-//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-//            @Override
-//            public void onInitializationComplete(InitializationStatus initializationStatus) {
-//            }
-//        });
-
     }
 
-    // Banner Ads
-    private void showBannerAds() {
-
-//        mAdView = findViewById(R.id.banner_ads_view);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
-    }
 
 
     /**
@@ -121,11 +116,22 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
     /**
      * Close navigation drawer
      */
-    public void closeDrawer(){
+    public void rightSide(){
+        //leftSide();
         if (drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawer(GravityCompat.END);
         } else {
             drawer.openDrawer(GravityCompat.END);
+        }
+    }
+
+
+    public void leftSide(){
+       // rightSide();
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            drawer.openDrawer(GravityCompat.START);
         }
     }
 
@@ -315,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
      */
     @Override
     public void clickedItem(int index) {
-        closeDrawer();
+        rightSide();
         changeServer.newServer(serverLists.get(index));
     }
 }

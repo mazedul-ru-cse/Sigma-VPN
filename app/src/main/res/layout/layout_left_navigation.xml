@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/rightNav">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/logo_back"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/developer_name"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="@string/developer"
+            android:textColor="@color/colorWhite"
+            android:textSize="10sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:background="@drawable/bangladesh"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Privacy policy"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:background="@drawable/bangladesh"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Rate Us"/>
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:background="#818080"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#99DCD9D9"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Social Media"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:background="@drawable/bangladesh"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Share"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:background="@drawable/bangladesh"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Send"/>
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:background="#818080"
+        android:layout_height="1dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#99DCD9D9"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Communication"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:background="@drawable/bangladesh"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Contact"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

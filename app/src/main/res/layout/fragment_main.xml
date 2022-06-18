@@ -10,9 +10,19 @@
             android:id="@+id/connectionStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="70dp"
 
             android:orientation="vertical">
+
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/banner_ads_view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="50dp"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
 
             <ImageButton
                 android:id="@+id/vpnBtn"
@@ -99,29 +109,27 @@
 <!--        </LinearLayout>-->
 
 
-
-
         <ImageView
             android:id="@+id/selectedServerIcon"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="150dp"
+            android:layout_marginBottom="130dp"
             android:background="@drawable/bangladesh" />
 
-<!--        <com.google.android.gms.ads.AdView-->
-<!--            android:id="@+id/banner_ads_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentStart="true"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:layout_marginStart="0dp"-->
-<!--            android:layout_marginEnd="0dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            ads:adSize="BANNER"-->
-<!--            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>-->
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/banner_ads_view2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="10dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111" />
     </RelativeLayout>
 
 </layout>

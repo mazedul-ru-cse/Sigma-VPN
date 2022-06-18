@@ -28,4 +28,16 @@
     </com.google.android.material.navigation.NavigationView>
 
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true">
+
+    <include layout="@layout/layout_left_navigation" />
+
+    </com.google.android.material.navigation.NavigationView>
+
+
 </androidx.drawerlayout.widget.DrawerLayout>
