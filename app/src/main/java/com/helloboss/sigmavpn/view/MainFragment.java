@@ -61,6 +61,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
     private SharedPreference preference;
 
     private FragmentMainBinding binding;
+    public static boolean connStatus = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -534,6 +535,12 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
 
     @Override
     public void onResume() {
+
+        if( binding.logTv.getText().toString().equals("")){
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
+            binding.connectionIndicator.setText("Connected");
+        }
+
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter("connectionState"));
 
         if (server == null) {
@@ -545,8 +552,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
     @Override
     public void onPause() {
 
-        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
-        binding.connectionIndicator.setText("Disconnected");
+//        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+//        binding.connectionIndicator.setText("Disconnected");
+
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
         super.onPause();
     }
@@ -565,5 +573,15 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
         }
 
         super.onStop();
+    }
+
+    @Override
+    public void onStart() {
+
+        if( binding.logTv.getText().toString().equals("")){
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
+            binding.connectionIndicator.setText("Connected");
+        }
+        super.onStart();
     }
 }

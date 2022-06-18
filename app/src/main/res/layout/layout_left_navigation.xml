@@ -17,7 +17,7 @@
             android:layout_height="90dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/logo" />
+            android:background="@drawable/logo"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,10 +47,11 @@
 
         <ImageView
             android:layout_width="30dp"
-            android:background="@drawable/bangladesh"
+            android:background="@drawable/ic_outline_policy_24"
             android:layout_height="30dp"
             />
         <TextView
+            android:id="@+id/privacy_policy"
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -63,7 +64,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -71,23 +72,24 @@
 
         <ImageView
             android:layout_width="30dp"
-            android:background="@drawable/bangladesh"
+            android:background="@drawable/ic_outline_star_rate_24"
             android:layout_height="30dp"
             />
         <TextView
+            android:id="@+id/rating_app"
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Rate Us"/>
+            android:text="Rate"/>
 
 
 
     </LinearLayout>
 
     <View
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:background="#818080"
         android:layout_height="1dp"/>
@@ -100,7 +102,7 @@
         android:text="Social Media"/>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -108,10 +110,11 @@
 
         <ImageView
             android:layout_width="30dp"
-            android:background="@drawable/bangladesh"
+            android:background="@drawable/ic_outline_share_24"
             android:layout_height="30dp"
             />
         <TextView
+            android:id="@+id/share_app"
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -124,7 +127,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -132,10 +135,10 @@
 
         <ImageView
             android:layout_width="30dp"
-            android:background="@drawable/bangladesh"
-            android:layout_height="30dp"
-            />
+            android:background="@drawable/ic_outline_send_24"
+            android:layout_height="30dp" />
         <TextView
+            android:id="@+id/send_message"
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -148,7 +151,7 @@
     </LinearLayout>
 
     <View
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:background="#818080"
         android:layout_height="1dp"/>
@@ -160,8 +163,10 @@
         android:layout_marginTop="10dp"
         android:text="Communication"/>
 
+
+
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
         android:orientation="horizontal"
@@ -169,19 +174,39 @@
 
         <ImageView
             android:layout_width="30dp"
-            android:background="@drawable/bangladesh"
+            android:background="@drawable/ic_outline_info_24"
             android:layout_height="30dp"
             />
         <TextView
+            android:id="@+id/about_app"
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Contact"/>
+            android:text="About"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
 
-
+        <ImageView
+            android:layout_width="30dp"
+            android:background="@drawable/ic_outline_exit_to_app_24"
+            android:layout_height="30dp"
+            />
+        <TextView
+            android:id="@+id/exit_app"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Exit"/>
     </LinearLayout>
 
 

@@ -1,6 +1,7 @@
 package com.helloboss.sigmavpn.view;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -10,6 +11,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.View;
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
 
     public static final String TAG = "SigmaVpn";
     ImageButton menuLeft, menuRight;
+    TextView privacyPolicy, ratingApp, shareApp, sendMess, aboutApp, exitApp;
 
 
     @Override
@@ -53,8 +59,14 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
 
         menuRight = findViewById(R.id.navbar_right);
         menuLeft = findViewById(R.id.navbar_left);
-        
-        
+
+        privacyPolicy = findViewById(R.id.privacy_policy);
+        ratingApp = findViewById(R.id.rating_app);
+        shareApp = findViewById(R.id.share_app);
+        sendMess = findViewById(R.id.send_message);
+        aboutApp = findViewById(R.id.about_app);
+        exitApp = findViewById(R.id.exit_app);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -92,8 +104,71 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
             serverListRv.setAdapter(serverListRVAdapter);
         }
 
+
+        // Exit app
+        exitApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                appExit();
+
+            }
+        });
+
+        //Rate the app
+        ratingApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rateApp();
+            }
+        });
+
+
     }
 
+    private void rateApp() {
+
+        Uri uri = Uri.parse("market://details?id=$"+getPackageName().toString());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e)  {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=$"+getPackageName().toString())));
+        }
+    }
+
+    private void appExit() {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Exit Sigma VPN?");
+        alertDialogBuilder
+                .setMessage("Click yes to exit!")
+                .setCancelable(false)
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                moveTaskToBack(true);
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                                System.exit(1);
+                            }
+                        })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
 
     /**
