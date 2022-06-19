@@ -39,6 +39,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <LinearLayout
+        android:id="@+id/privacy_policy"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
@@ -51,7 +52,6 @@
             android:layout_height="30dp"
             />
         <TextView
-            android:id="@+id/privacy_policy"
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -64,26 +64,25 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
+        android:id="@+id/rating_app"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="30dp"
-            android:background="@drawable/ic_outline_star_rate_24"
             android:layout_height="30dp"
-            />
+            android:background="@drawable/ic_outline_star_rate_24" />
+
         <TextView
-            android:id="@+id/rating_app"
-            android:textColor="@color/colorWhite"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="Rate"/>
-
+            android:text="Rate"
+            android:textColor="@color/colorWhite" />
 
 
     </LinearLayout>
@@ -102,6 +101,7 @@
         android:text="Social Media"/>
 
     <LinearLayout
+        android:id="@+id/share_app"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
@@ -114,7 +114,6 @@
             android:layout_height="30dp"
             />
         <TextView
-            android:id="@+id/share_app"
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -127,6 +126,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/send_message"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
@@ -138,7 +138,7 @@
             android:background="@drawable/ic_outline_send_24"
             android:layout_height="30dp" />
         <TextView
-            android:id="@+id/send_message"
+
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -166,6 +166,7 @@
 
 
     <LinearLayout
+        android:id="@+id/about_app"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
@@ -178,7 +179,6 @@
             android:layout_height="30dp"
             />
         <TextView
-            android:id="@+id/about_app"
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
@@ -188,6 +188,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/exit_app"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_width="match_parent"
@@ -200,7 +201,7 @@
             android:layout_height="30dp"
             />
         <TextView
-            android:id="@+id/exit_app"
+
             android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_width="wrap_content"

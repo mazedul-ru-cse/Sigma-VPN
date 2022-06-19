@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/button.xml" value="0.1315" />
+        <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/button_connected.xml" value="0.1555" />
         <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/button_connecting.xml" value="0.114" />
         <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/ic_baseline_language_24.xml" value="0.2225" />
         <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/ic_baseline_policy_24.xml" value="0.1755" />
         <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/ic_baseline_power_settings_new_24.xml" value="0.1" />
+        <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1555" />
         <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/ic_outline_contacts_24.xml" value="0.1555" />
         <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/ic_outline_language_24.xml" value="0.1075" />
         <entry key="..\:/Android Project/Sigma VPN/app/src/main/res/drawable/ic_outline_policy_24.xml" value="0.1865" />

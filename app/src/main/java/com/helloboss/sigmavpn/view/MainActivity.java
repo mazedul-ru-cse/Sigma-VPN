@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,11 +20,13 @@ import android.os.Bundle;
 
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdView;
 
+import com.helloboss.sigmavpn.BuildConfig;
 import com.helloboss.sigmavpn.R;
 import com.helloboss.sigmavpn.adapter.ServerListRVAdapter;
 import com.helloboss.sigmavpn.interfaces.ChangeServer;
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
 
     public static final String TAG = "SigmaVpn";
     ImageButton menuLeft, menuRight;
-    TextView privacyPolicy, ratingApp, shareApp, sendMess, aboutApp, exitApp;
+    LinearLayout privacyPolicy, ratingApp, shareApp, sendMess, aboutApp, exitApp;
 
 
     @Override
@@ -123,7 +126,75 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
             }
         });
 
+        //Share app link
 
+        shareApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                shareApp();
+            }
+        });
+
+        //Send Message
+        sendMess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMessage();
+            }
+        });
+
+        //About app
+        aboutApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              aboutApps();
+            }
+        });
+
+    }
+
+    private void aboutApps() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sigma VPN");
+        builder.setMessage("Sigma VPN is the best VPN apps in the world. " +
+                "It is fully free for any user and It is the most trusted security." +
+                "Unblock any websites save your device secure.");
+        builder.setCancelable(true);
+        builder.show();
+
+    }
+
+    private void sendMessage() {
+
+        String[] to = {"mazedul.hellowboss@gmail.com"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Sigma VPN");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Hi");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+        }catch (Exception e){
+
+        }
+
+    }
+
+    private void shareApp() {
+        try{
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Sigma VPN");
+            String mess = "\nThis is the best VPN app for android. So download the app now.\n";
+            mess = mess + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, mess);
+            startActivity(Intent.createChooser(shareIntent,"Send via"));
+
+        }catch (Exception e){
+
+        }
     }
 
     private void rateApp() {
@@ -146,9 +217,9 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
     private void appExit() {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Exit Sigma VPN?");
+        alertDialogBuilder.setTitle("Sigma VPN");
         alertDialogBuilder
-                .setMessage("Click yes to exit!")
+                .setMessage("Do you want to exit..?")
                 .setCancelable(false)
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {

@@ -1,48 +1,41 @@
 package com.helloboss.sigmavpn.view;
-
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.Uri;
 import android.net.VpnService;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import com.helloboss.sigmavpn.CheckInternetConnection;
 import com.helloboss.sigmavpn.R;
 import com.helloboss.sigmavpn.SharedPreference;
 import com.helloboss.sigmavpn.databinding.FragmentMainBinding;
 import com.helloboss.sigmavpn.interfaces.ChangeServer;
 import com.helloboss.sigmavpn.model.Server;
-
-
 import de.blinkt.openvpn.OpenVpnApi;
 import de.blinkt.openvpn.core.OpenVPNService;
 import de.blinkt.openvpn.core.OpenVPNThread;
@@ -62,6 +55,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
 
     private FragmentMainBinding binding;
     public static boolean connStatus = false;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,9 +67,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
         initializeAll();
 
 
-        //Show banner ads
-        showBannerAds();
-
 
         MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
             @Override
@@ -84,18 +75,81 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
             }
         });
 
+
+        //Show interstitial ads
+        setAds();
+
+        //Show banner ads
+        //showBannerAds();
+
         return view;
     }
 
     // Banner Ads
     private void showBannerAds() {
 
-        AdRequest adRequest1 = new AdRequest.Builder().build();
-        binding.bannerAdsView1.loadAd(adRequest1);
+       // AdRequest adRequest1 = new AdRequest.Builder().build();
+        //binding.bannerAdsView1.loadAd(new AdRequest.Builder().build());
 
-        AdRequest adRequest2 = new AdRequest.Builder().build();
-        binding.bannerAdsView2.loadAd(adRequest2);
+       // AdRequest adRequest2 = new AdRequest.Builder().build();
+        binding.bannerAdsView2.loadAd(new AdRequest.Builder().build());
     }
+
+    //Check ads loaded or not
+
+    private void adsLoad(){
+
+        if(mInterstitialAd != null){
+
+            mInterstitialAd.show(getActivity());
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+
+                    if(vpnStart){
+
+                        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
+                        binding.connectionIndicator.setText("Connected");
+                        binding.logTv.setText("");
+
+                    }else{
+
+                        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+                        binding.connectionIndicator.setText("Disconnected");
+                        binding.logTv.setText("");
+                    }
+                    super.onAdDismissedFullScreenContent();
+                }
+            });
+
+            mInterstitialAd = null;
+            setAds();
+        }
+    }
+
+    private void setAds(){
+
+        InterstitialAd.load(getContext(),"ca-app-pub-3940256099942544/8691691433", new AdRequest.Builder().build(),
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+
+                        mInterstitialAd = null;
+                        //setAds();
+                    }
+                });
+
+    }
+
 
     /**
      * Initialize all variable and object
@@ -197,10 +251,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
      */
     public boolean stopVpn() {
         try {
-
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
             binding.connectionIndicator.setText("Disconnected");
-            
+            adsLoad();
             vpnThread.stop();
 
             status("connect");
@@ -311,6 +364,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
                 binding.logTv.setText("");
                 break;
             case "CONNECTED":
+                connStatus = true;
                 vpnStart = true;// it will use after restart this activity
                 status("connected");
                 binding.logTv.setText("");
@@ -340,28 +394,35 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
 
         if (status.equals("connect")) {
             //binding.vpnBtn.setText(getContext().getString(R.string.connect));
+            connStatus = false;
         } else if (status.equals("connecting")) {
+            connStatus = false;
             //binding.vpnBtn.setText(getContext().getString(R.string.connecting));
         } else if (status.equals("connected")) {
-
+            connStatus = true;
+            adsLoad();
             binding.connectionIndicator.setText("Connected");
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
 
 
         } else if (status.equals("tryDifferentServer")) {
+            connStatus = false;
 
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
             binding.connectionIndicator.setText("Try again");
         }
         else if (status.equals("loading")) {
+            connStatus = false;
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
             binding.connectionIndicator.setText("Disconnected");
         }
         else if (status.equals("invalidDevice")) {
+            connStatus = false;
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
             binding.connectionIndicator.setText("Disconnected");
         }
         else if (status.equals("authenticationCheck")) {
+            connStatus = false;
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
             binding.connectionIndicator.setText("Disconnected");
         }
@@ -522,23 +583,29 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
         this.server = server;
         updateCurrentServerIcon(server.getFlagUrl());
 
-        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
-        binding.connectionIndicator.setText("Disconnected");
 
         // Stop previous connection
         if (vpnStart) {
             stopVpn();
         }
-
+        
+        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+        binding.connectionIndicator.setText("Disconnected");
         prepareVpn();
     }
 
     @Override
     public void onResume() {
 
-        if( binding.logTv.getText().toString().equals("")){
+        if(connStatus){
+            //adsLoad();
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
             binding.connectionIndicator.setText("Connected");
+        }else{
+
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+            binding.connectionIndicator.setText("Disconnected");
+
         }
 
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(broadcastReceiver, new IntentFilter("connectionState"));
@@ -554,6 +621,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
 
 //        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
 //        binding.connectionIndicator.setText("Disconnected");
+        setAds();
 
         LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(broadcastReceiver);
         super.onPause();
@@ -564,6 +632,8 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
      */
     @Override
     public void onStop() {
+
+        adsLoad();
 
         binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
         binding.connectionIndicator.setText("Disconnected");
@@ -578,9 +648,18 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
     @Override
     public void onStart() {
 
-        if( binding.logTv.getText().toString().equals("")){
+
+        if(connStatus){
+
+           // adsLoad();
+            setAds();
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
             binding.connectionIndicator.setText("Connected");
+
+        }else{
+            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+            binding.connectionIndicator.setText("Disconnected");
+
         }
         super.onStart();
     }
