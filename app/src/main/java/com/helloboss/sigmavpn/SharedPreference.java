@@ -11,7 +11,7 @@ import static com.helloboss.sigmavpn.Utils.getImgURL;
 
 public class SharedPreference {
 
-    private static final String APP_PREFS_NAME = "CakeVPNPreference";
+    private static final String APP_PREFS_NAME = "SigmaVPNPreference";
 
     private SharedPreferences mPreference;
     private SharedPreferences.Editor mPrefEditor;

@@ -12,4 +12,14 @@
     <string name="no">NO</string>
     <string name="developer">Designer &amp; Developer</string>
     <string name="developer_name">M A Mazedul Islam</string>
+
+
+    //admob
+
+    <string name="banner_id_1">ca-app-pub-6646050479645244/5240857777</string>
+    <string name="banner_id_2">ca-app-pub-6646050479645244/8988531090</string>
+    <string name="interstitial_ad_id">ca-app-pub-6646050479645244/4119347795</string>
+
+    <string name="admob_app_id">ca-app-pub-6646050479645244~6690504961</string>
+
 </resources>

@@ -48,7 +48,7 @@ public class ServerListRVAdapter extends RecyclerView.Adapter<ServerListRVAdapte
         holder.serverItemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Select Country name : ",serverLists.get(position).getFlagUrl());
+              //  Log.i("Select Country name : ",serverLists.get(position).getFlagUrl());
                 listener.clickedItem(position);
 
             }

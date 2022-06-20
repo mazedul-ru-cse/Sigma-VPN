@@ -108,6 +108,15 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
         }
 
 
+        //Privacy policy
+        privacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                privacyPol();
+            }
+        });
+
+
         // Exit app
         exitApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +162,12 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
 
     }
 
+    private void privacyPol() {
+
+        Uri uri = Uri.parse("https://docs.google.com/document/d/1xSSDfiZrrQdlOqTl-zjvRsUm9nhGAc16yJldGqD2q7A/edit?usp=sharing");
+        startActivity(new Intent(Intent.ACTION_VIEW,uri));
+    }
+
     private void aboutApps() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Sigma VPN");
@@ -187,10 +202,10 @@ public class MainActivity extends AppCompatActivity implements NavItemClickListe
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Sigma VPN");
-            String mess = "\nThis is the best VPN app for android. So download the app now.\n";
+            String mess = "\nThis is the best VPN app for android. Download the app now.\n";
             mess = mess + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
             shareIntent.putExtra(Intent.EXTRA_TEXT, mess);
-            startActivity(Intent.createChooser(shareIntent,"Send via"));
+            startActivity(Intent.createChooser(shareIntent,"Share by"));
 
         }catch (Exception e){
 

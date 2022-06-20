@@ -17,6 +17,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
@@ -80,7 +82,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
         setAds();
 
         //Show banner ads
-        //showBannerAds();
+        showBannerAds();
 
         return view;
     }
@@ -88,65 +90,82 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
     // Banner Ads
     private void showBannerAds() {
 
-       // AdRequest adRequest1 = new AdRequest.Builder().build();
-        //binding.bannerAdsView1.loadAd(new AdRequest.Builder().build());
+        try {
 
-       // AdRequest adRequest2 = new AdRequest.Builder().build();
-        binding.bannerAdsView2.loadAd(new AdRequest.Builder().build());
+            // AdRequest adRequest1 = new AdRequest.Builder().build();
+            binding.bannerAdsView1.loadAd(new AdRequest.Builder().build());
+
+            // AdRequest adRequest2 = new AdRequest.Builder().build();
+            binding.bannerAdsView2.loadAd(new AdRequest.Builder().build());
+        }catch (Exception e){
+
+        }
     }
 
     //Check ads loaded or not
 
     private void adsLoad(){
 
-        if(mInterstitialAd != null){
+        try {
 
-            mInterstitialAd.show(getActivity());
-            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
-                @Override
-                public void onAdDismissedFullScreenContent() {
+            if (mInterstitialAd != null) {
 
-                    if(vpnStart){
+                mInterstitialAd.show(getActivity());
+                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
 
-                        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
-                        binding.connectionIndicator.setText("Connected");
-                        binding.logTv.setText("");
+                        if (vpnStart) {
 
-                    }else{
+                            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
+                            binding.connectionIndicator.setText("Connected");
+                            binding.logTv.setText("");
 
-                        binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
-                        binding.connectionIndicator.setText("Disconnected");
-                        binding.logTv.setText("");
+                        } else {
+
+                            binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
+                            binding.connectionIndicator.setText("Disconnected");
+                            binding.logTv.setText("");
+                        }
+                        super.onAdDismissedFullScreenContent();
                     }
-                    super.onAdDismissedFullScreenContent();
-                }
-            });
 
+                });
+            }
+        }catch (Exception e){
             mInterstitialAd = null;
             setAds();
         }
+
+            mInterstitialAd = null;
+            setAds();
+
     }
 
     private void setAds(){
+        try {
 
-        InterstitialAd.load(getContext(),"ca-app-pub-3940256099942544/8691691433", new AdRequest.Builder().build(),
-                new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        // The mInterstitialAd reference will be null until
-                        // an ad is loaded.
-                        mInterstitialAd = interstitialAd;
+            InterstitialAd.load(getContext(), "ca-app-pub-3940256099942544/8691691433", new AdRequest.Builder().build(),
+                    new InterstitialAdLoadCallback() {
+                        @Override
+                        public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                            // The mInterstitialAd reference will be null until
+                            // an ad is loaded.
+                            mInterstitialAd = interstitialAd;
 
-                    }
+                        }
 
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        // Handle the error
+                        @Override
+                        public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                            // Handle the error
 
-                        mInterstitialAd = null;
-                        //setAds();
-                    }
-                });
+                            mInterstitialAd = null;
+                            //setAds();
+                        }
+                    });
+        }catch (Exception e){
+
+        }
 
     }
 
@@ -201,7 +220,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
 
         builder.setPositiveButton(getActivity().getString(R.string.yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                stopVpn();
+                stopVpn("running");
             }
         });
         builder.setNegativeButton(getActivity().getString(R.string.no), new DialogInterface.OnClickListener() {
@@ -238,7 +257,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
                 showToast("you have no internet connection !!");
             }
 
-        } else if (stopVpn()) {
+        } else if (stopVpn("running")) {
 
             // VPN is stopped, show a Toast message.
             showToast("Disconnect Successfully");
@@ -249,11 +268,16 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
      * Stop vpn
      * @return boolean: VPN status
      */
-    public boolean stopVpn() {
+    public boolean stopVpn(String signal) {
         try {
+
+            if(!signal.equals("update")) {
+                adsLoad();
+                showBannerAds();
+            }
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
             binding.connectionIndicator.setText("Disconnected");
-            adsLoad();
+
             vpnThread.stop();
 
             status("connect");
@@ -400,9 +424,10 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
             //binding.vpnBtn.setText(getContext().getString(R.string.connecting));
         } else if (status.equals("connected")) {
             connStatus = true;
-            adsLoad();
             binding.connectionIndicator.setText("Connected");
             binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_on);
+
+            adsLoad();
 
 
         } else if (status.equals("tryDifferentServer")) {
@@ -586,7 +611,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Chan
 
         // Stop previous connection
         if (vpnStart) {
-            stopVpn();
+            stopVpn("update");
         }
         
         binding.vpnBtn.setBackgroundResource(R.drawable.vpn_btn_back_off);
